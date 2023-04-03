@@ -1,0 +1,46 @@
+cd C:\REPOS\master_deegree\ml-agents - ustawienie terminala na folder, zmienić początek jeśli trzeba
+
+activate ml-agents - aktywacja wcześniej zainstalowanego środowiska Pythonowego
+
+tensorboard --logdir=summaries - odpalać w drugim terminalu, do śledzenia treningu. podsumowania zapisują się w folderze summaries
+
+mlagents-learn ./config/MD.yaml --run-id=Editor --train -komenda do odpalaniatreningu z edytora Unity, a nie ze zbudowanego środowiska
+
+ważne parametry:
+./config/MD.yaml - plik konfiguracyjny, tutaj ustawiamy każdemu mózgowi parametry, np Max_Steps
+--env= ścieżka do pliku .exe środowiska, './' zaczyna się od głównego folderu ml-agents
+--train uczy model, jeśli chcemy tylko odpalić z konsoli trening bez uczenia się, to nie trzeba parametru
+--load dajemy to zamiast --train jeśli chcemy odpalić środowisko z nauczonym modelem, lub wpisujemy to obok --train zeby kontynuować uczenie od momentu ostatniego checkpointu
+-base-port= przydatne jeśli chcemy odpalać więcej niż jeden trening naraz, każdy musi mieć inny port. domyślny jest 5505
+
+PS: 
+
+
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level1/PPO/Training --run-id=Agent_Vs_Target --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level2/PPO/Training --run-id=Agent_Vs_3Targets --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level3/PPO/Training --run-id=Agent_Vs_Targets_Maze --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level4/PPO/Training --run-id=Team_Vs_Dummies --train --base-port=5505
+
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level1/PPOR/Training --run-id=Agent_Vs_Target --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level2/PPOR/Training --run-id=Agent_Vs_3Targets --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level3/PPOR/Training --run-id=Agent_Vs_Targets_Maze --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level4/PPOR/Training --run-id=Team_Vs_Dummies --train
+
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level1/PPOBC/Training --run-id=Agent_Vs_Target --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level2/PPOBC/Training --run-id=Agent_Vs_3Targets --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level3/PPOBC/Training --run-id=Agent_Vs_Targets_Maze --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level4/PPOBC/Training --run-id=Team_Vs_Dummies --train
+
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level1/PPORBC/Training --run-id=Agent_Vs_Target --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level2/PPORBC/Training --run-id=Agent_Vs_3Targets --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level3/PPORBC/Training --run-id=Agent_Vs_Targets_Maze --train
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Level4/PPORBC/Training --run-id=Team_Vs_Dummies --train
+
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPOvsPPOR/Training --run-id=PPOvsPPOR --train --base-port=5505
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPOvsPPOBC/Training --run-id=PPOvsPPOBC --train --base-port=5506
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPOvsPPORBC/Training --run-id=PPOvsPPORBC --train --base-port=5507
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPORvsPPOBC/Training --run-id=PPORvsPPOBC --train --base-port=5508
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPORvsPPORBC/Training --run-id=PPORvsPPORBC --train --base-port=5509
+mlagents-learn ./config/MD.yaml --env=./BUILDS/Versus/PPOBCvsPPORBC/Training --run-id=PPOBCvsPPORBC --train --base-port=5510
+
+
